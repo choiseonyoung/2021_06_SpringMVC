@@ -3,9 +3,11 @@ package com.callor.jdbc.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.callor.jdbc.model.CompVO;
 import com.callor.jdbc.pesistance.CompDao;
+import com.callor.jdbc.service.CompService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,8 +17,10 @@ import lombok.extern.slf4j.Slf4j;
 public class CompController {
 	
 	protected final CompDao compDao;
-	public CompController(CompDao compDao) {
+	protected final CompService compService;
+	public CompController(CompDao compDao, CompService compService) {
 		this.compDao = compDao;
+		this.compService = compService;
 	}
 	
 	// localhost:8080/jdbc/comp/insert로 호출되는 함수
@@ -30,8 +34,7 @@ public class CompController {
 	public String insert(CompVO cmVO) { // VO 통해서 통째로 수신 // setter 등 이용해서 값 추가하던 코드가 사라짐
 		
 		log.debug("Company VO {}", cmVO.toString());
-		compDao.insert(cmVO);
-		
+		compService.insert(cmVO);
 		return "redirect:/";
 		// root path로 리다이렉트하라
 	}
@@ -40,5 +43,12 @@ public class CompController {
 	public String update() {
 		
 		return "comp/input";
+	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public String delete(@RequestParam("cp_code") String cpCode) { // 변수이름은 웹에서 보내는 이름과 같아야 함
+		// 웹에서 cpcode를 받아와서 code에 담아라. 변수 이름 다르게 쓰고 싶을땐 이렇게
+		compDao.delete(cpCode);
+		return "redirect:/";
 	}
 }
