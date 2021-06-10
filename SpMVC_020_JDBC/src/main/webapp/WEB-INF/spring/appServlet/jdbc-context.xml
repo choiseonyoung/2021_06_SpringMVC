@@ -10,11 +10,15 @@
 	<!-- properties 파일의 내용을 읽어서 변수로 사용하기 위한 bean 설정 -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="fileEncoding" value="UTF-8"/>
-		<property name="location" value="/WEB-INF/spring/config/mysql.properties"/>
-	
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/spring/config/mysql.properties</value>
+				<value>/WEB-INF/spring/config/string.properties</value>
+			</list>
+		</property>
 	</bean>
 		
-	<!-- 
+	<!--
 	주석을 작성할 때는 꺽쇠, 느낌표 기호 사용금지
 	*-context.xml 파일
 	project에서 선언한, 사용할 클래스를 객체로 미리 선언하기 위한 설정을 하는 곳

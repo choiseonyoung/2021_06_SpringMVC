@@ -1,0 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="rootPath" value="${pageContext.request.contextPath}" />
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<!-- 모바일 화면에서 정상적으로 화면 보이게 하는 거. 디바이스와 똑같이 만들고 초기값 1대1로 만들어라 -->
+<title>도서정보 2021</title>
+<link href="${rootPath}/static/css/main_layout.css?ver=2021-06-10-001"
+		rel="stylesheet" />
+<link href="${rootPath}/static/css/main_home.css?ver=2021-06-10-001"
+		rel="stylesheet" />
+</head>
