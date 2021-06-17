@@ -1,19 +1,16 @@
 @charset "UTF-8";
-
-<style>
-	
 	
 	section#main_sec {
+		flex: auto;
 		width: 100%;
 		margin: 5px auto;
 		border: 1px solid #999;
-		
 		display: flex;
 		/* justify-content: space-around; */
 	}
 	section#main_sec article {
-		border: 1px solid gray;
-		margin: 6px 3px;
+		border: 1;
+		margin: 5px 3px;
 		flex: 1; /* 전체 크기를 1대1대1로 해서 가득차게 */
 		padding: 5px;
 	}
@@ -40,6 +37,13 @@
 		
 		height: 100px;
 		margin: 6px 3px;
+		/*
+		article box에 지정된 background를
+		box에 가득차도록 하고, 이미지는 box 크기만큼 가로세로를 조절하여 채워라
+		현재 article에 backgorund를 채우면서 nth-of-type(*) 가상 클래스를 사용하였더니
+		backgorund-size가 작동되지 않더라
+		해결방법 : include_header.jspf 참조
+		*/
 		background-size : 100% 100%; /* cover */
 		border-radius: 5px;
 	}
@@ -67,4 +71,3 @@
 	include_header.jspf 파일에 옮겼다
 	*/
 	
-</style>

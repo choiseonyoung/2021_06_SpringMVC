@@ -9,36 +9,33 @@
 
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf"%>
+	<h1 class="page_title">저자정보</h1>
 	<section class="main_sec">
 		<table>
 			<tr>
-				<th>ISBN</th>
-				<th>도서명</th>
-				<th>출판사</th>
-				<th>저자</th>
-				<th>출판연도</th>
-				<th>가격</th>
-				<th>페이지수</th>
+				<th>CODE</th>
+				<th>저자명</th>
+				<th>전화번호</th>
+				<th>주소</th>
+				<th>주요장르</th>
 			</tr>
 			<tr>
-				<td>ISBN</td>
-				<td>도서명</td>
-				<td>출판사</td>
-				<td>저자</td>
-				<td>출판연도</td>
-				<td>가격</td>
-				<td>페이지수</td>
+				<td>CODE</td>
+				<td>저자명</td>
+				<td>전화번호</td>
+				<td>주소</td>
+				<td>주요장르</td>
 			</tr>
 		</table>
 		<div class="btn_box">
-			<button class="btn_insert_book">도서등록</button>
+			<button class="btn_insert author">저자등록</button>
 		</div>
 	</section>
 	<%@ include file="/WEB-INF/views/include/include_footer.jspf"%>
 </body>
 <script>
-document.querySelector("button.btn_insert_book").addEventListener("click",()=>{
-	location.href = "${rootPath}/books/insert";
+document.querySelector("button.btn_insert.author").addEventListener("click",()=>{ // btn 인서트와 아서가 동시에 적용되어 있는 것
+	location.href = "${rootPath}/author/insert";
 });
 </script>
 

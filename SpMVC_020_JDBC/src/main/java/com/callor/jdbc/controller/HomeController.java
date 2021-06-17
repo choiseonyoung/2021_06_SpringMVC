@@ -37,12 +37,46 @@ public class HomeController {
 		this.rentService = rentService;
 	}
 	
+	/*
+	 * 사용자에게 Response를 할 때
+	 * forward 방법과 redirect 방법이 있다
+	 * 
+	 * forwarding은
+	 * service 등등에서 생성한(조회한) 데이터를 .jsp 파일과 Rendering하여 사용자에게 HTML 코드로 전송한다
+	 * 
+	 * service 등등에서 생성한 데이터는
+	 * Model 객체에 addAttribute() method를 사용하여 데이터를 만들고
+	 * ...
+	 * 
+	 * class Spring___ {
+	 * 		main() {
+	 * 			HomeController hController = new HomeController();
+	 * 			Locale locale = new Locale();
+	 * 			Model model = new Model();
+	 * 			String url = hController.home(locale, model);
+	 * 			
+	 * 			if((url.contains("redirect")) {
+	 * 				rendering(url, model);			
+	 * 			}
+	 * 			
+	 * 		}
+	 * }
+	 * 이런 코드가 있을것이다
+	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 //		logger.info("Welcome home! The client locale is {}.", locale);
 		
-		log.debug("Uer Name : {}", user_name);
-		log.debug("Uer Email: {}", user_email);
+		/*
+		 * 매개변수로 전달받은 Model class type변수인 model에 속성을 하나 추가한다.
+		 * 속성의 이름은 user이며, 값은 user_name에 담긴 값이다
+		 * 
+		 * Model 객체에 담긴 속성(변수)들은 jsp파일과 Rendering이 완료되면 메모리에서 
+		 */
+		model.addAttribute("user", user_name);
+		// user라는 이름으로 user_name에 담겨있는 변수를 세팅하고 홈이라는 친구한테 보낸다
+		// model에 addAttribute라는 메서드 이용해서 변수 세팅. 그리고 하는 게 없음
+		
 		
 		rentService.viewBookAndComp();
 		return "home";
