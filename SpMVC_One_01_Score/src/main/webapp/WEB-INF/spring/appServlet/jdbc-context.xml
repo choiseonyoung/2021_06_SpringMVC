@@ -6,7 +6,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
-		
+	
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="fileEncoding" value="UTF-8"/>
 		<property name="locations">
@@ -17,15 +17,16 @@
 		</property>
 	</bean>
 	
-	 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> <!-- 어떤 클래스로 만들지 -->
 	 	<property name="driverClassName" value="${mysql.driver}"/>
 	 	<property name="url" value="${mysql.url}"/>
 	 	<property name="username" value="${mysql.username}"/>
 	 	<property name="password" value="${mysql.password}"/>
 	 </bean>
 	 
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<constructor-arg ref="dataSource"/>
+	 <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="dataSource"/> <!-- 객체기 때문에 ref 레퍼런스로 주입 -->
 	
 	</bean>
+
 </beans>

@@ -13,7 +13,7 @@ import com.callor.jdbc.model.BookVO;
  */
 public interface BookDao extends GenericDao<BookVO, String> {
 	
-	// Generic에 선언된 mehtod에 추가하여 도서정보 테이블에서 조회한 method를 작성
+	// Generic에 선언된 method에 추가하여 도서정보 테이블에서 조회한 method를 작성
 	// 도서명 검색하기
 	public List<BookVO> findByName(String name);
 	

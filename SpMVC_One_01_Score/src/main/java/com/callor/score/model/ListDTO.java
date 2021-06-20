@@ -8,11 +8,15 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ScoreVO {
-	private String sc_seq;
-	private String sc_subject; // 과목이름
-	private String sc_score; // 점수
+@ToString
+public class ListDTO {
+	private String st_num;
+	private String st_name;
+	private String st_dept;
+	private Integer st_grade;
+	private int num;
+	private int sum;
+	private float avg;
 }

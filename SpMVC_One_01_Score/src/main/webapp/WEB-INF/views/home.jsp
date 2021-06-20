@@ -4,20 +4,60 @@
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-<%@ include file="/WEB-INF/views/include/include_head.jspf" %>
+<%@ include file="/WEB-INF/views/include/include_head.jspf"%>
+<style>
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+#main {
+	width: 60%;
+	margin: auto;
+	margin-top: 50px;
+	text-align: center;
+}
+
+#list {
+	width: 100%;
+	border-collapse: collapse;
+	border-top: 2px solid gray;
+	line-height: 40px;
+}
+
+#list tr {
+	border-bottom: 1px solid lightgray;
+}
+
+#list th {
+	background-color: rgb(245, 243, 243);
+	border-bottom: 2px solid lightgray;
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+	  document.querySelector("nav#main_nav").addEventListener("click", (e) => {
+	      let menuText = e.target.textContent;
+	      let urlPath = `${rootPath}`;
+		
+	      if (menuText === "Home") {
+	        urlPath += "/";
+	      } else if (menuText === "학생정보") {
+	        urlPath += "/student";
+	      } else if (menuText === "성적일람표") {
+	        urlPath += "/score";
+	      } else if (menuText === "로그인") {
+	        urlPath += "/member/login";
+	      }
+	      
+	      location.href = urlPath;
+	    }
+	  });
+	});
+</script>
 <body>
-<%@ include file="/WEB-INF/views/include/include_header.jspf" %>
-	<header>
-		<h1>대한 고교 성적처리 2021</h1>
-	</header>
-	<nav>
-		<section id="menubar">
-			<p>Home</p>
-			<p>학생정보</p>
-			<p>성적일람표</p>
-		</section>
-		<p class="hi">로그인</p>
-	</nav>
+	<%@ include file="/WEB-INF/views/include/include_header.jspf"%>
 
 	<section id="main">
 		<table id="list">
@@ -30,10 +70,19 @@
 				<th>총점</th>
 				<th>평균</th>
 			</tr>
-			<tr>
-				<td>ㅎㅇ</td>
-			</tr>
+			<c:forEach items="${STLIST}" var="ST">
+				<tr>
+					<td>${ST.st_num}</td>
+					<td>${ST.st_name}</td>
+					<td>${ST.st_dept}</td>
+					<td>${ST.st_grade}</td>
+					<td>${ST.st_num}</td>
+					<td>${ST.st_sum}</td>
+					<td>${ST.st_avg}</td>
+				</tr>
+			</c:forEach>
 		</table>
+		<button>학생추가</button>
 	</section>
 </body>
 </html>
