@@ -11,6 +11,5 @@ public interface CompDao extends GenericDao<CompVO, String> {
 	public List<CompVO> findByTel(String tel);
 	public List<CompVO> findByCeo(String ceo);
 	
-	public List<CompVO> SelectAll(String comp);
 	
 }

@@ -9,6 +9,4 @@ public interface AuthorDao extends GenericDao<AuthorVO, String>{
 	public List<AuthorVO> findByAName(String aname);
 	public List<AuthorVO> findByATel(String atel);
 	
-	public List<AuthorVO> SelectAll(String author);
-	
 }

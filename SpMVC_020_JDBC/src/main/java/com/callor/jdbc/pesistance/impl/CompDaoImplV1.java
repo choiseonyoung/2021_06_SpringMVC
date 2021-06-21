@@ -34,23 +34,12 @@ public class CompDaoImplV1 implements CompDao {
 	public CompDaoImplV1(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-	
-	@Override
-	public List<CompVO> SelectAll(String comp) {
-
-		String sql = " SELECT * FROM tbl_company ";
-		
-		List<CompVO> compList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<CompVO>(CompVO.class));
-		log.debug("SELECT {}", compList.toString());
-		
-		return compList;
-	}
 
 	@Override
-	public CompVO findById(String pk) {
-		// TODO Auto-generated method stub
-		String sql = "";
-		Object[] params = new Object[] { pk };
+	public CompVO findById(String cp_code) {
+		
+		String sql = "SELECT * FROM tbl_company WHERE cp_code = ?";
+		Object[] params = new Object[] { cp_code };
 		
 		CompVO vo = (CompVO) jdbcTemplate.query(sql, params, new BeanPropertyRowMapper(CompVO.class));
 		
@@ -105,7 +94,15 @@ public class CompDaoImplV1 implements CompDao {
 
 	@Override
 	public List<CompVO> findByCName(String cname) {
-		// TODO Auto-generated method stub
+		// TODO 출판사 이름으로 검색하기
+		String sql = " SELECT * FROM tbl_company ";
+		// WHERE cp_code LIKE '%' || '%' // oracle
+		sql += " WHERE cp_name LIKE CONCAT('%', ? '%')"; // mysql
+		// 중간 문자열 검색
+		
+		// SELECT를 수행한 후 각각의 데이터를 CompVO에 담고 List에 add하여 return 한 후 compList에 받기
+		List<CompVO> compList = jdbcTemplate.query(sql, new Object[] { cname },new BeanPropertyRowMapper<CompVO>(CompVO.class));
+		
 		return null;
 	}
 
@@ -121,11 +118,6 @@ public class CompDaoImplV1 implements CompDao {
 		return null;
 	}
 
-	@Override
-	public List<CompVO> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	/*
 	 * tbl_company table에서 cpcode(출판사코드) 중 가장 큰 값을 추출하기
@@ -137,6 +129,17 @@ public class CompDaoImplV1 implements CompDao {
 		String cpCode = (String) jdbcTemplate.queryForObject(sql, String.class);
 		
 		return cpCode;
+	}
+
+	@Override
+	public List<CompVO> selectAll() {
+		// TODO 출판사 전체 조회
+		String sql = " SELECT * FROM tbl_company ";
+		
+		List<CompVO> compList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<CompVO>(CompVO.class));
+		log.debug("SELECT {}", compList.toString());
+		
+		return compList;
 	}
 
 }

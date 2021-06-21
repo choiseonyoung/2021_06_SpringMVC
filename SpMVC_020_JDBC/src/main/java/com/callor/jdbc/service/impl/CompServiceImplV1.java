@@ -1,5 +1,7 @@
 package com.callor.jdbc.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.callor.jdbc.model.CompVO;
@@ -23,6 +25,7 @@ public class CompServiceImplV1 implements CompService {
 		String cpCode = compDao.findByMaxCode();
 		log.debug("Cpcode {} ", cpCode);
 		
+		// 출판사 코드 자동으로 만들기
 		if(cpCode == null || cpCode.equals("")) {
 			cpCode = String.format("C%04d", 1);
 			// 출판사 코드를 자동으로 생성하겠다
@@ -40,4 +43,23 @@ public class CompServiceImplV1 implements CompService {
 		return 0;
 	}
 
+	@Override
+	public List<CompVO> findByCName(String cp_name) {
+		
+		// 전달받은 출판사 이름에서 앞뒤의 빈칸을 제거하고 Dao에게 Toss한 후
+		// 출판사 리스트를 받아 다시 return하기
+		return compDao.findByCName(cp_name.trim());
+	}
+
+	@Override
+	public List<CompVO> selectAll() {
+		return compDao.selectAll();
+	}
+
+	@Override
+	public CompVO findByCCode(String cp_code) {
+		return compDao.findById(cp_code.trim());
+	}
+
+	
 }

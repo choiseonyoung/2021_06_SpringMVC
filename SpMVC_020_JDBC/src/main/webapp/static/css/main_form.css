@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+/* 입력폼에 대한 테마. main_layout 너무 커져서 분리해놓은거 */
+
 <style>
 form {
 	width: 80%;
