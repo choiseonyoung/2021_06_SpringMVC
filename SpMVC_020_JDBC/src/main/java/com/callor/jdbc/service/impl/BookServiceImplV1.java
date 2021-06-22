@@ -34,4 +34,10 @@ public class BookServiceImplV1 implements BookService {
 		return bookDao.selectAll();
 	}
 
+	@Override
+	public Integer insert(BookVO bookVO) {
+		
+		return bookDao.insert(bookVO);
+	}
+
 }

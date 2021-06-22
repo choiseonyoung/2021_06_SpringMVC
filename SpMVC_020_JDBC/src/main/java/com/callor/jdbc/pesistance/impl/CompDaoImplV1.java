@@ -97,25 +97,33 @@ public class CompDaoImplV1 implements CompDao {
 		// TODO 출판사 이름으로 검색하기
 		String sql = " SELECT * FROM tbl_company ";
 		// WHERE cp_code LIKE '%' || '%' // oracle
-		sql += " WHERE cp_name LIKE CONCAT('%', ? '%')"; // mysql
+		sql += " WHERE cp_title LIKE CONCAT('%', ? '%')"; // mysql
 		// 중간 문자열 검색
 		
 		// SELECT를 수행한 후 각각의 데이터를 CompVO에 담고 List에 add하여 return 한 후 compList에 받기
 		List<CompVO> compList = jdbcTemplate.query(sql, new Object[] { cname },new BeanPropertyRowMapper<CompVO>(CompVO.class));
 		
-		return null;
+		return compList;
 	}
 
 	@Override
 	public List<CompVO> findByTel(String tel) {
 		// TODO Auto-generated method stub
-		return null;
+		String sql = " SELECT * FROM tbl_company ";
+		sql += " WHERE cp_tel LIKE CONCAT('%', ? '%')";
+		List<CompVO> compList = jdbcTemplate.query(sql, new Object[] { tel },new BeanPropertyRowMapper<CompVO>(CompVO.class));
+		
+		return compList;
 	}
 
 	@Override
 	public List<CompVO> findByCeo(String ceo) {
 		// TODO Auto-generated method stub
-		return null;
+		String sql = " SELECT * FROM tbl_company ";
+		sql += " WHERE cp_ceo LIKE CONCAT('%', ? '%')";
+		List<CompVO> compList = jdbcTemplate.query(sql, new Object[] { ceo },new BeanPropertyRowMapper<CompVO>(CompVO.class));
+		
+		return compList;
 	}
 
 	
