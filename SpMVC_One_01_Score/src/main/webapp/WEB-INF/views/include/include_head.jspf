@@ -6,6 +6,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>대한고교 성적처리 2021</title>
-<link href="${rootPath}/static/css/main_home.css?ver=2021-06-20-001"
+<link href="${rootPath}/static/css/main_home.css?ver=2021-06-22-003"
 		rel="stylesheet" />
 </head>

@@ -5,57 +5,6 @@
 <!DOCTYPE html>
 <html>
 <%@ include file="/WEB-INF/views/include/include_head.jspf"%>
-<style>
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-
-#main {
-	width: 60%;
-	margin: auto;
-	margin-top: 50px;
-	text-align: center;
-}
-
-#list {
-	width: 100%;
-	border-collapse: collapse;
-	border-top: 2px solid gray;
-	line-height: 40px;
-}
-
-#list tr {
-	border-bottom: 1px solid lightgray;
-}
-
-#list th {
-	background-color: rgb(245, 243, 243);
-	border-bottom: 2px solid lightgray;
-}
-</style>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-	  document.querySelector("nav#main_nav").addEventListener("click", (e) => {
-	      let menuText = e.target.textContent;
-	      let urlPath = `${rootPath}`;
-		
-	      if (menuText === "Home") {
-	        urlPath += "/";
-	      } else if (menuText === "학생정보") {
-	        urlPath += "/student";
-	      } else if (menuText === "성적일람표") {
-	        urlPath += "/score";
-	      } else if (menuText === "로그인") {
-	        urlPath += "/member/login";
-	      }
-	      
-	      location.href = urlPath;
-	    }
-	  });
-	});
-</script>
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf"%>
 
@@ -76,13 +25,22 @@ document.addEventListener("DOMContentLoaded", () => {
 					<td>${ST.st_name}</td>
 					<td>${ST.st_dept}</td>
 					<td>${ST.st_grade}</td>
-					<td>${ST.st_num}</td>
+					<td>${ST.st_sub}</td>
 					<td>${ST.st_sum}</td>
 					<td>${ST.st_avg}</td>
 				</tr>
 			</c:forEach>
 		</table>
-		<button>학생추가</button>
+		<button id="btn_insert_stu">학생추가</button>
 	</section>
 </body>
+<script>
+document.querySelector("#btn_insert_stu").addEventListener("click",()=>{
+	location.href = "${rootPath}/insert_stu";
+});
+document.querySelector("td").addEventListener("click",()=> {
+	alert("hi");
+	location.href = "${rootPath}/stu_info";
+});
+</script>
 </html>

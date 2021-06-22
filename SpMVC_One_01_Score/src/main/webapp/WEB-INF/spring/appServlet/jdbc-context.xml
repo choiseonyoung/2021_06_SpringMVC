@@ -17,7 +17,7 @@
 		</property>
 	</bean>
 	
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> <!-- 어떤 클래스로 만들지 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	 	<property name="driverClassName" value="${mysql.driver}"/>
 	 	<property name="url" value="${mysql.url}"/>
 	 	<property name="username" value="${mysql.username}"/>
@@ -25,7 +25,7 @@
 	 </bean>
 	 
 	 <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<constructor-arg ref="dataSource"/> <!-- 객체기 때문에 ref 레퍼런스로 주입 -->
+		<constructor-arg ref="dataSource"/>
 	
 	</bean>
 

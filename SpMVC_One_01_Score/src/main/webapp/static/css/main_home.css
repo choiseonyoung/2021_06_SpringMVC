@@ -29,4 +29,12 @@
   background-color: rgb(245, 243, 243);
   border-bottom: 2px solid lightgray;
 }
+
+#list td:hover {
+	cursor: pointer;
+}
+
+#btn_insert_stu {
+	margin-top: 50px;
+}
 </style>

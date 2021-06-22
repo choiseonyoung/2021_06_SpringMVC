@@ -16,7 +16,7 @@ public class ListDTO {
 	private String st_name;
 	private String st_dept;
 	private Integer st_grade;
-	private int num;
-	private int sum;
-	private float avg;
+	private int st_sub;
+	private int st_sum;
+	private float st_avg;
 }

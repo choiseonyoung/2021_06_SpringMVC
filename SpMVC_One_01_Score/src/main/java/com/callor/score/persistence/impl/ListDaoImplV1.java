@@ -23,10 +23,10 @@ public class ListDaoImplV1 implements ListDao {
 	@Override
 	public List<ListDTO> selectAll() {
 		// TODO 프로젝트 시작화면. 학생리스트와 성적 정보 전체 출력
-		String sql = "SELECT * FROM view_학생리스트 ";
+		String sql = " SELECT * FROM view_학생리스트 ";
 		List<ListDTO> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<ListDTO>(ListDTO.class));
 		log.debug("SELECT {}", list.toString());
-		return null;
+		return list;
 	}
 
 	@Override
