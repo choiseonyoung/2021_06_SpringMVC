@@ -11,10 +11,11 @@ section#main_sec {
 }
 
 section#main_sec article {
-	border: 1;
-	margin: 5px 3px;
+	border: 1px solid skyblue;
+	margin: 6px 3px;
 	flex: 1; /* 전체 크기를 1대1대1로 해서 가득차게 */
 	padding: 5px;
+	width: 30%;
 }
 
 section#main_sec article ul {
@@ -25,7 +26,6 @@ section#main_sec article ul {
 section#main_sec article li {
 	margin: 0 20px;
 	padding: 0 7px;
-	max-width: 100%;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
