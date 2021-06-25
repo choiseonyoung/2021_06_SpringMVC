@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
 <style>
+/*
 	button.student.insert {
 		background-color: white;
 		color: gray;
@@ -14,9 +15,10 @@
 		color: gray;
 		border: 2px solid purple;
 	}
+*/
 </style>
 <h2>학생정보 리스트</h2>
-<table>
+<table class="student_list detail">
 	<tr>
 		<th>학번</th>
 		<th>이름</th>
@@ -32,14 +34,14 @@
 			</tr>
 		</c:when>
 		<c:otherwise>
-			<c:forEach items="${STUDENTS}" var="ST">
+			<c:forEach items="${STUDENTS}" var="STD">
 				<tr data-stnum="${STD.st_num}">
-					<td>${ST.st_num}</td>
-					<td>${ST.st_name}</td>
-					<td>${ST.st_dept}</td>
-					<td>${ST.st_grade}</td>
-					<td>${ST.st_tel}</td>
-					<td>${ST.st_addr}</td>
+					<td>${STD.st_num}</td>
+					<td>${STD.st_name}</td>
+					<td>${STD.st_dept}</td>
+					<td>${STD.st_grade}</td>
+					<td>${STD.st_tel}</td>
+					<td>${STD.st_addr}</td>
 				</tr>
 			</c:forEach>
 		</c:otherwise>
@@ -49,3 +51,4 @@
 	<button class="student insert">학생정보등록</button>
 	<button class="student home">처음으로</button>
 </div>
+

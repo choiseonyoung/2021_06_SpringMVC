@@ -54,7 +54,7 @@ header {
 	background-position: center;
 	background-attachment: fixed;
 	text-align: center;
-	text-shadow: 2px 2px 2px black;
+	text-shadow: 2px 2px 2px gray;
 	color: lightpink;
 	padding: 2rem;
 }
@@ -144,7 +144,7 @@ div.btn_box button {
 }
 
 button:hover {
-	box-shadow: 2px 2px 2px 2px black;
+	box-shadow: 2px 2px 2px 2px gray;
 	cursor: pointer;
 }
 
@@ -199,6 +199,26 @@ form button.list {
 	color: black;
 }
 
+form button.home {
+	background-color: lightpink;
+	color: black;
+}
+
+button.update {
+	background-color: lightpink;
+	color: white;
+}
+
+button.delete {
+	background-color: lightpink;
+	color: black;
+}
+
+button.student {
+	background-color: lightpink;
+	color: white;
+}
+
 </style>
 
 <body>
@@ -217,6 +237,9 @@ form button.list {
 			<c:when test="${BODY == 'STUDENT_INPUT' }">
 				<%@ include file="/WEB-INF/views/student/input.jsp" %>
 			</c:when>
+			<c:when test="${BODY == 'STUDENT_DETAIL' }">
+				<%@ include file="/WEB-INF/views/student/detail.jsp" %>
+			</c:when>
 			<c:otherwise>
 				<%@ include file="/WEB-INF/views/main.jsp"%>
 			</c:otherwise>
@@ -231,9 +254,9 @@ form button.list {
  * JS 코드를 통합하여 모음으로 관리할 때는
  * addEvent를 하려고 하는 요소가 있는지를 먼저 검사한 후 addEvent를 수행해줘야 한다.
  */
-let std_list = document.querySelector("button.student.list");
-let std_insert = document.querySelector("button.student.insert");
-let home = document.querySelector("button.student.home");
+let std_list = document.querySelector("button.list");
+let std_insert = document.querySelector("button.insert");
+let home = document.querySelector("button.home");
 
 if(std_list) {
 	std_list.addEventListener("click",(e)=>{
@@ -249,9 +272,27 @@ if(std_insert) {
 }
 
 if(home) {
-	document.querySelector("button.student.home").addEventListener("click",(e)=>{
+	document.querySelector("button.home").addEventListener("click",(e)=>{
 		location.href = "${rootPath}/"
 	})
 }
+
+let table = document.querySelector("table.detail")
+if(table) {
+	table.addEventListener("click", (e)=>{
+		
+		let target = e.target
+		let tagName = target.tagName
+		if(tagName === "TD") {
+			let tr = target.closest("TR")
+			let stNum = tr.dataset.stnum
+			
+			location.href = "${rootPath}/student/detail?st_num=" + stNum
+		}
+		// 현재 클릭된 td의 부모 tr을 가져와서
+		})
+}
+
+
 </script>
 </html>
