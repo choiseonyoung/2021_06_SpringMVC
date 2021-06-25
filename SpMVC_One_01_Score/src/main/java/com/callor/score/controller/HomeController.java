@@ -8,24 +8,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.callor.score.model.ListDTO;
-import com.callor.score.model.StudentVO;
-import com.callor.score.service.ListService;
+import com.callor.score.model.ViewListDTO;
+import com.callor.score.service.ViewListService;
 
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @Controller
 public class HomeController {
 	
-	protected final ListService listService;
-	public HomeController(ListService listService) {
-		this.listService = listService;
-	}
+	protected final ViewListService vlService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
-		List<ListDTO> list = listService.selectAll();
-		model.addAttribute("STLIST", list);
+		List<ViewListDTO> vlList = vlService.selectAll();
+		model.addAttribute("VLLIST",vlList);
+		
 		return "home";
 	}
 	

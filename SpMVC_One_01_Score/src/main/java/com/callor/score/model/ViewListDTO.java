@@ -8,15 +8,15 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
-public class StudentDTO {
-	private String st_num;
-	private String st_dept;
+public class ViewListDTO {
+	private Long st_num;
 	private String st_name;
-	private Integer st_grade;
-	private Integer sc_seq;
-	private String sc_subject;
-	private Integer sc_score;
+	private String st_dept;
+	private int st_grade;
+	private int sb_count;
+	private int sb_sum;
+	private float sb_avg;
 }

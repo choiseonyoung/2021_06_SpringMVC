@@ -8,14 +8,14 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class StudentVO {
-	private String st_num; // 학번
-	private String st_dept; // 전공이름
-	private String st_name; // 학생이름
-	private Integer st_grade; // 학년
-	private String st_tel; // 연락처
-	private String st_addr; // 주소
+	private Long st_num;
+	private String st_name;
+	private String st_dept;
+	private int st_grade;
+	private String st_tel;
+	private String st_addr;
 }

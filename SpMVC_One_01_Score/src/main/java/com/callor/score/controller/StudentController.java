@@ -1,37 +1,50 @@
 package com.callor.score.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.callor.score.model.StudentVO;
 import com.callor.score.service.StudentService;
 
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
+@RequestMapping(value="/student")
 @Controller
 public class StudentController {
 	
-	protected final StudentService studentService;
-	public StudentController(StudentService studentService) {
-		this.studentService = studentService;
+	protected final StudentService stService;
+	
+	@RequestMapping(value={"","/"}, method=RequestMethod.GET)
+	public String student(Model model) {
+		StudentVO vo = stService.findById();
+		model.addAttribute(vo);
+		return "home";
 	}
 	
-	@RequestMapping(value = "/insert_stu", method = RequestMethod.GET)
-	public String insert_stu() {
-		return "include/insert_stu";
+	@RequestMapping(value={"/insert"}, method=RequestMethod.GET)
+	public String student(Model model) {
+		int ret = stService.insert();
+		return "home";
 	}
 	
-	@RequestMapping(value = "/insert_stu", method = RequestMethod.POST)
-	public String insert_stu(@ModelAttribute StudentVO vo) {
-		
-		Integer ret = studentService.insert(vo);
-		return "redirect:/";
+	@RequestMapping(value={"/insert"}, method=RequestMethod.POST)
+	public String student(Model model) {
+		int ret = stService.insert();
+		return "home";
 	}
 	
-	@RequestMapping(value = "/stu_info", method = RequestMethod.GET)
-	public String stu_info() {
-		return "include/stu_info";
+	@RequestMapping(value={"/update"}, method=RequestMethod.GET)
+	public String student(Model model) {
+		int ret = stService.insert();
+		return "home";
 	}
 	
+	@RequestMapping(value={"/update"}, method=RequestMethod.POST)
+	public String student(Model model) {
+		int ret = stService.update();
+		return "home";
+	}
 }

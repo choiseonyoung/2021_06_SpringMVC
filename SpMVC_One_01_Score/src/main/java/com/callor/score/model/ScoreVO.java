@@ -8,11 +8,13 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class ScoreVO {
-	private String sc_seq;
-	private String sc_subject; // 과목이름
-	private String sc_score; // 점수
+	private Long sc_seq;
+	private Long sc_stnum;
+	private String sc_subject;
+	private int sc_score;
+
 }
