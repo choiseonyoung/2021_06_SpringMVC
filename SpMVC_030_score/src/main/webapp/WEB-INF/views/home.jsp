@@ -59,6 +59,36 @@ header {
 	padding: 2rem;
 }
 
+nav {
+	background-color: lightgray;
+	color: black;
+	width: 100wvh
+}
+
+nav.fixed {
+	opsition: fixed;
+	top: 0;
+	left 0;
+	riehgt: 10px;
+	border-bottom-right-radius: 20px;
+	box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+	
+}
+
+nav ul {
+	list-style: none;
+	display: 
+}
+
+nav li {
+	padding: 16px 12px;
+	border-bottom: 3px solid transparent;
+	transition: 1s;
+
+nav li:hover {
+	border-bottom: 3px solid yellow;
+}
+
 section#main_sec {
 	flex: 1;
 	width: 100wv;
@@ -69,6 +99,12 @@ section#main_sec {
 	/* background: linear-gradient(to bottom, purple, pink); */
 	background-size: 100% 100%;
 	background-attachment: fixed;
+	
+	/*
+	header와 nav를 화면에 고정하고
+	data가 보이는 부분만 scroll 하기 위하여
+	section#main_sec
+	*/
 }
 
 h2 {
@@ -214,9 +250,40 @@ button.delete {
 	color: black;
 }
 
-button.student {
-	background-color: lightpink;
+button.student.list {
+	background-color: orange;
 	color: white;
+	text-shadow: 1px 1px 1px black;
+}
+form {
+	width: 90%;
+	margin: 0 auto 10px auto;
+}
+fieldset {
+	background-color: #eee;
+	border: 1px solid green;
+	border-radius: 10px;
+	padding: 0.7rem;
+}
+form label, form input {
+	display: inline-block;
+	margin: 5px;
+	padding: 8px 16px;
+}
+form label {
+	width: 30%;
+	text-align: right;
+	color: blue;
+	font-weight: bold;
+}
+form input {
+	width: 60%;
+	outline: 0;
+	border: #aaa;
+	border-radius: 50px;
+}
+form input:hover {
+	background: #bbb;
 }
 
 </style>
@@ -226,6 +293,14 @@ button.student {
 		<h1>대한고교 성적처리</h1>
 		<p>대한고교 성적처리 시스템 2021</p>
 	</header>
+	<nav>
+		<ul>
+			<li>HOME</li>
+			<li>로그인</li>
+			<li>로그아웃</li>
+			<li>관리자</li>
+		</ul>
+	</nav>
 	<section id="main_sec">
 		<c:choose>
 			<c:when test="${BODY == 'SCORE_VIEW' }">
@@ -254,9 +329,9 @@ button.student {
  * JS 코드를 통합하여 모음으로 관리할 때는
  * addEvent를 하려고 하는 요소가 있는지를 먼저 검사한 후 addEvent를 수행해줘야 한다.
  */
-let std_list = document.querySelector("button.list");
-let std_insert = document.querySelector("button.insert");
-let home = document.querySelector("button.home");
+let std_list = document.querySelector("button.student.list");
+let std_insert = document.querySelector("button.student.insert");
+let home = document.querySelector("button.student.home");
 
 if(std_list) {
 	std_list.addEventListener("click",(e)=>{
@@ -292,6 +367,36 @@ if(table) {
 		// 현재 클릭된 td의 부모 tr을 가져와서
 		})
 }
+
+let main_nav = document.querySelector("nav#masin_py")
+let main_header = document.querytSelector("haeder")
+
+// header box의 높이가 얼마냐
+let main_header_height = main_header.offsetHeight;
+document.addEventListener("scroll",()=>{
+	// HTML 문서 전체의 크기, 좌표 등을 추출하기
+	let doc_bound = document.querySelector("HTML")
+				.getBoundingClientRect();
+	
+	let doc_top = doc_bound.top
+	/*
+	화면이 아래방향으로 스크롤될때
+	화면 문서의 top 좌표를 추출하여
+	
+	header box의 높이와 비교
+	header box의 높이에 -1을 곱하고 그 값보다 작아지면
+	==  header box가 화면에서 사라지면
+	nav에 fixed 라는 class를 부착하고
+	== header box가 화면에서 나타나면
+	nav에 fixed class를 제거하여 원래 모습으로 다시 보이기
+	*/
+	if(doc_top < main_header_height * -1) {
+		main_nav.classList.add("fixed")
+	} else {
+		main_nav.classList.remove("fixed")
+	}
+})
+
 
 
 </script>
