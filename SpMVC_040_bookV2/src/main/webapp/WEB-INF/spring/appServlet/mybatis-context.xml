@@ -11,10 +11,9 @@
 	
 	
 	<!-- 1. dataSource -->
-	
 	<bean id="ds" class="org.apache.commons.dbcp2.BasicDataSource">
-        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver/myLibs" />
-        <property name="url" value="jdbc:mysql://localhost:3306/"/>
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/myLibs"/>
 		<property name="username" value="gbUser" />
 		<property name="password" value="12345" />
 	</bean>
@@ -26,8 +25,7 @@
 	value : 값이 문자열형일 때, String
 	ref : 값이 객체일 때
 	 -->
-	<bean id="sqlSessionFactory"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds" />
 		<property name="typeAliasesPackage" value="com.callor.book.model" />
 		<property name="mapperLocations" value="/WEB-INF/spring/mybatis-mapper/*-mapper.xml"/>
@@ -46,7 +44,7 @@
 		<property name="dataSource" ref="ds"/>
 	</bean>
 
-	<mybatis-spring:scan base-package="com.callor.book.dao"/>
+	<mybatis-spring:scan base-package="com.callor.book.dao.ext"/>
 
 	
 
