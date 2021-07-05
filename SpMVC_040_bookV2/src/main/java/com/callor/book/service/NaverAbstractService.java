@@ -1,14 +1,11 @@
 package com.callor.book.service;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
-
-import org.json.simple.parser.ParseException;
 
 import com.callor.book.config.NaverSecret;
 
@@ -35,9 +32,9 @@ import com.callor.book.config.NaverSecret;
  * 
  */
 public abstract class NaverAbstractService<T> {
-	public abstract String queryURL(String search) throws UnsupportedEncodingException;
+	public abstract String queryURL(String search) throws Exception;
 
-	public String getJsonString(String queryURL) throws IOException {
+	public String getJsonString(String queryURL) throws Exception {
 		// API를 통하여 다른 서버에 Request를 보낼 때 사용할 객체
 		URL url = new URL(queryURL);
 
@@ -73,5 +70,5 @@ public abstract class NaverAbstractService<T> {
 		return sBuffer.toString();
 	}
 
-	public abstract List<T> getNaverList(String jsonString) throws ParseException;
+	public abstract List<T> getNaverList(String jsonString) throws Exception, URISyntaxException;
 }
