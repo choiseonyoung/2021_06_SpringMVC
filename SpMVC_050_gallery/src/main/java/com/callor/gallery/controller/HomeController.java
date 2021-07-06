@@ -40,7 +40,7 @@ public class HomeController {
 		List<String> fileNames = fileService.filesUp(m_file);
 		model.addAttribute("FILES", fileNames);
 		
-		return "home";
+		return "redirect:/gallery";
 	}
 	
 	/*
