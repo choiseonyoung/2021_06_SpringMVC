@@ -7,32 +7,38 @@
 		font-size: 10px;
 		color: red;
 	}
+	
+	.join_input_box {
+		margin-bottom: 40px;
+	}
 </style>
-<form method="POST">
-	<div>
-		<label>사용자 ID(Email)</label>
-		<input name="m_userid" type="email">
-		<div class="msg join id">
+<form method="POST" id="join_form">
+	<div class="input_box">
+		<div class="join_input_box">
+			<label>사용자 ID(Email)</label>
+			<input name="m_userid" type="email">
+			<div class="msg join id">
+			</div>
 		</div>
-	</div>
-	<div>
-		<label>비밀번호</label>
-		<input name="m_password" type="password">
-	</div>
-	<div>
-		<label>비밀번호 확인</label>
-		<input name="re_password" type="password">
-	</div>
-	<div>
-		<label>닉네임</label>
-		<input name="m_nick">
-	</div>
-	<div>
-		<label>전화번호</label>
-		<input name="m_tel" type="tel">
-	</div>
-	<div>
-		<button>가입신청</button>
+		<div class="join_input_box">
+			<label>비밀번호</label>
+			<input name="m_password" type="password">
+		</div>
+		<div class="join_input_box">
+			<label>비밀번호 확인</label>
+			<input name="re_password" type="password">
+		</div>
+		<div class="join_input_box">
+			<label>닉네임</label>
+			<input name="m_nick">
+		</div>
+		<div class="join_input_box">
+			<label>전화번호</label>
+			<input name="m_tel" type="tel">
+		</div>
+		<div>
+			<button id="btn_input">가입신청</button>
+		</div>
 	</div>
 </form>
 

@@ -3,6 +3,70 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
 
+<style>
+
+/* 
+네비게이션 틀
+nav tag에 바탕색과 글자색 지정
+ul tag에 list-style(머릿표)을 none, display를 flex
+가로방향으로 nav 설정
+li에 padding을 줘서 적당히 간격, box 크기를 설정
+마우스 커서를 손가락 모양
+*/
+
+#main_nav {
+	font-family: 'S-CoreDream-4Regular';
+	background-color: #F7E2FA;
+	width: 40%;
+	margin: auto;
+	margin-bottom: 50px;
+}
+
+#main_nav ul {
+	display: flex;
+	justify-content: space-around;
+	list-style: none;
+}
+
+#hi {
+	color: #FB3893;
+	font-weight: bold;
+}
+
+#main_nav li {
+	padding: 5px 16px;
+	cursor: pointer;
+	position: relative;
+	/* 자기 자신은 아무 영향이 없고 자신이 포함한 태그에만 어떤 앱솔루트를 주기 위해 */
+}
+
+/* 특정한 nav를 오른쪽으로 보낼 때 */
+nav li#login, nav li#logout {
+	margin-left: auto;
+}
+
+/* 화면엔 없지만 가상의 태그 만들기 */
+nav li:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	
+	width: 0;
+	height: 0;
+	
+	transition: all 0.7s;
+}
+
+nav li:hover:after {
+	border-bottom: 5px solid pink;
+	
+	height: 100%;
+	width: 100%;
+}
+
+</style>
+
 <nav id="main_nav">
 	<ul>
 		<li id="home">HOME</li>
@@ -17,7 +81,7 @@
 			<li id="join">회원가입</li>
 		</c:if>
 		<c:if test="${not empty MEMBER}">
-			<li>${MEMBER.m_nick}님 환영합니다 ~!</li>
+			<li id="hi">${MEMBER.m_nick} 님</li>
 			<li id="logout">로그아웃</li>
 			<c:if test="${MEMBER.m_level == 0}">
 				<li id="admin">관리자</li>

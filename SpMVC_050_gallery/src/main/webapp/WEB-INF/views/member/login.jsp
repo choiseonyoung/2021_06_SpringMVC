@@ -14,23 +14,29 @@
 		width: 300px;
 		margin: 10px auto;
 	}
+	
+	.login_input_box {
+		margin-bottom: 70px;
+	}
 </style>
 
 <form method="POST" id="login_form">
-	<div class="msg login error">
-	
-	</div>
-	<div>
-		<label>사용자 ID</label>
-		<input name="m_userid" type="email">
-	</div>
-	<div>
-		<label>비밀번호</label>
-		<input name="m_password" type="password">
-	</div>
-	<div>
-		<button type="button" class="login">로그인</button>
-		<button type="button" class="join">회원가입</button>
+	<div class="input_box">
+		<div class="msg login error">
+		
+		</div>
+		<div class="login_input_box">
+			<label>사용자 ID</label>
+			<input name="m_userid" type="email">
+		</div>
+		<div class="login_input_box">
+			<label>비밀번호</label>
+			<input name="m_password" type="password">
+		</div>
+		<div>
+			<button type="button" class="login btn_input">로그인</button>
+			<button type="button" class="join btn_input">회원가입</button>
+		</div>
 	</div>
 </form>
 <script>
@@ -78,12 +84,17 @@ if(login_fail === "NOT_USERID") {
 	//msg_error.style.fontSeize = "20px"
 	//msg_error.style.backgroundColor = "red"
 	//msg_error.style.padding = "2rem"
+	
 } else if(login_fail === "NEQ_PASS") {
 	msg_error.innerText = "비밀번호가 틀렸습니당"
-		msg_error.classList.add("view")
+	msg_error.classList.add("view")
 	//msg_error.style.fontSeize = "20px"
 	//msg_error.style.backgroundColor = "red"
 	//msg_error.style.padding = "2rem"
+} else if(login_fail === "LOGIN_REQ") {
+	msg_error.innerHTML = "로그인이 필요한 서비스 입니당<br/>"
+	msg_error.innerHTML += "로그인을 해 주세요<br/>"
+	msg_error.classList.add("view")
 }
 
 </script>

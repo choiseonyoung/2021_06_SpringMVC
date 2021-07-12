@@ -81,7 +81,7 @@ h1 {
 
 /* input -------------------------------------------------------- */
 
-#input_form {
+#input_form, #login_form, #join_form {
 	display: flex;
 	margin: auto;
 	width: 100%;
@@ -144,12 +144,8 @@ h1 {
 
 /* -------------------------------------------------------- */
 
-#btn_send {
+#btn_send, #btn_input {
 	font-family: 'S-CoreDream-4Regular';
-	font-size: 20px;
-	margin-top: 100px;
-	width: 150px;
-	height: 70px;
 	border: 0;
 	background-color: #E4C7EC;
 	border: 2px solid lightgray;
@@ -157,6 +153,19 @@ h1 {
 	color: gray;
 	font-weight: bold;
 	cursor: pointer;
+}
+
+#btn_send {
+	margin-top: 100px;
+	font-size: 20px;
+	width: 150px;
+	height: 70px;
+}
+
+#btn_input {
+	width: 100px;
+	height: 50px;
+	font-size: 12px;
 }
 
 </style>
@@ -176,6 +185,9 @@ h1 {
 	</c:when>
 	<c:when test="${BODY eq 'GA-DETAIL'}">
 		<%@ include file="/WEB-INF/views/gallery/detail.jsp" %>
+	</c:when>
+	<c:when test="${BODY eq 'GA-DETAIL-V2'}">
+		<%@ include file="/WEB-INF/views/gallery/detail2.jsp" %>
 	</c:when>
 	<c:when test="${BODY eq 'JOIN'}">
 		<%@ include file="/WEB-INF/views/member/join.jsp" %>
@@ -209,7 +221,7 @@ if(main_nav) {
 			if (menu.id === "join") {
 				location.href = "${rootPath}/member/join"
 			} else if (menu.id === "login") {
-				location.href = "${rootPath}/member/login"
+				location.href = "${rootPath}/member/login/nav"
 			} else if (menu.id === "logout") {
 				location.href = "${rootPath}/member/logout"
 			} else if (menu.id === "image_create") {
