@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>나의 홈페이지</title>
+<script src="https://kit.fontawesome.com/1b5ca0cab9.js" crossorigin="anonymous"></script>
 <style>
 @font-face {
     font-family: 'ghanachoco';

@@ -43,7 +43,7 @@
 	}
 	
 	div.gallery_file:after {
-		content: "삭제";
+		content: "";
 		position: absolute;
 		left: 0;
 		top: 0;
@@ -51,15 +51,24 @@
 		right: 0;
 		background-color: transparent;
 		color: transparent;
+		/* 투명 색깔로 */
 		z-index: 10;
-		transition: 1s;
+		transition: 0.5s;
+		line-height: 200px;
+		/*
+		box 내의 text의 그려지는 높이를 box의 높이와 같게 만들면
+		text가 box의 세로 방향 가운데 정렬이 된다
+		*/
+		text-align: center;
 		cursor: pointer;
 	}
 	
 	div.gallery_file:hover:after {
-		background-color: lightgray;
+		content: '\f2ed';
+		font-size: 30px;
+		font-family: "Font Awesome 5 Free";
+		background-color: rgba(80, 0, 30, 0.3);
 		color: white;
-		text-align: center;
 		vertical-align: middle;
 	}
 	
@@ -171,18 +180,42 @@ delete_button.addEventListener("click",()=>{
 	}
 })
 
-let gallery_files = document.querySelector("div#gallery_files")
+/*
+ const : JS에서 상수를 선언하기
+ 다른 언어에서는 상수 선언이 메모리적 문제를 해결하고
+ 동시성처리(멀티 환경에서 서로 변수가 간섭하는 현상을 핸들링)를 쉽게 하기 위한 방안으로 사용한다
+ 
+ 상수를 선언하는 이유
+ 여기에 설정된 값이 코드 중간에 어떤 이유로 변경되는 것을 방지하는 역할 (자바스크립트에서는 이 기능이 더 중요)
+ 
+ 한개의 선언된 변수에 코드 중간에 다른 값이 저장되어(의도하든 그렇지 않든)
+ 논리적인 오류를 일으킬 수 있다
+ 그러한 문제를 방지하기 위하여 const 키워드를 상당히 권장한다
+ */
+const gallery_files = document.querySelector("div#gallery_files")
+// const : 변수값이 한번 설정되면 절대 변하지 않는 속성 (상수 설정) 오류를 막기 위한 조치
 if(gallery_files) {
 	gallery_files.addEventListener("click",(e)=>{
-		let tag = e.target
+		const tag = e.target
+		// tag에 걸려있는 class 이름을 챙겨서 조건을 걸 때
+		// tag.className === "gallery_file" 와 같이 사용할 수 있지만
+		// 혹시 tag에 다수의 클래스가 설정될 수 있기 때문에 조건문이 false가 될 수 있다
+		// className.includes() 함수를 사용하여 조건 검사를 하는 것이 좋다
 		if(tag.tagName === "DIV" && tag.className.includes("gallery_file")) {
-			let seq = tag.dataset.fseq
-			if(confirm(seq + "이미지 삭제")) {
+			const seq = tag.dataset.fseq
+			if(confirm(seq + "이미지를 삭제하시겠습니까?")) {
+				// 삭제하면 fetch로 ajax 이용해서 서버로 보냄
+				// GET method 방식으로 Ajax 요청 (GET은 쉬움. 링크 클릭 or location 사용하는 것과 똑같)
+				// 서버에서 리턴받는 값을 추출하기 위해서 .then 사용해서 2번째 항목에서 그 내용 체크하면 됨
 				fetch("${rootPath}/gallery/file/delete/" + seq)
 				.then(response=>response.text())
 				.then(result=>{
 					if(result === "OK") {
 						alert("삭제성공")
+						tag.remove()
+						// 현재 클릭된 div tag 요소를 화면에서 제거 (db는 아직 삭제된 거 아님. 그래서 새로고침하면 나타남)
+					} else if (result === "FAIL_SEQ") {
+						alert("이미지 코드가 잘못되어 삭제할 수 없음")
 					} else if (result === "NO") {
 						alert("서버가 모른대")
 					} else {
