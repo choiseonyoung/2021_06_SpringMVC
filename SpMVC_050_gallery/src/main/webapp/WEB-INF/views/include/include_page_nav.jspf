@@ -14,6 +14,7 @@
 	section.page_box ul {
 		width: 80%;
 		display: flex;
+		justify-content: center;
 		list-style: none;
 	}
 	
@@ -25,6 +26,8 @@
 		/* 높이를 글자크기의 1.25배만큼 */
 		text-align: center;
 		color: gray;
+		background-color:#FFF;
+		border:1px solid #DEE2E6;
 		cursor: pointer;
 		white-space: nowrap;
 	}
@@ -38,24 +41,32 @@
 	
 	section.page_box li.active {
 		color: #FFF;
-		background-color: #007BFF;
+		background-color: pink;
 		border-color: #007BFF;
 	}
 </style>
+
 <section class="page_box">
 	<ul class="page_nav_main">
 		<li data-num="1">처음</li>
 		<li data-num="${PAGE_NUM - 1}">&lt;</li>
-		<c:forEach begin="1" end="10" var="pageNum">
+		<c:if test="${PAGE_NAV.startPage > 2}">
+			<li>....</li>
+		</c:if>
+		<c:forEach begin="${PAGE_NAV.startPage}" end="${PAGE_NAV.endPage}" var="pageNum">
+		
 			<li data-num="${pageNum}"
 			class="
-			<c:if test="${PAGE_NUM == pageNum}">active</c:if>"
-			></li>
+			<c:if test="${PAGE_NUM == pageNum}">active</c:if>
+			"
+			>${pageNum}</li>
 		</c:forEach>
 		<!-- 현재 보여주고자 하는 페이지 번호가 선택한 페이지 번호와 같으면 active라고 하는 클래스를 첨가해라  -->
-		
+		<c:if test="${PAGE_NAV.endPage < PAGE_NAV.totalPages}">
+			<li>....</li>
+		</c:if>
 		<li data-num="${PAGE_NUM + 1 }">&gt;</li>
-		<li data-num="99">끝</li>
+		<li data-num="${PAGE_NAV.totalPages}">끝</li>
 	</ul>
 </section>
 

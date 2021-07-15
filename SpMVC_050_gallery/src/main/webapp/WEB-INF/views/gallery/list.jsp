@@ -25,6 +25,7 @@
 	
 </style>
 
+<%@ include file="/WEB-INF/views/include/include_gallery_search.jspf" %>
 <div id="gallery_box">
 	<c:forEach items="${GALLERYS}" var = "GALLERY">
 		<div class="ga_box">
@@ -46,9 +47,5 @@
 			</div>
 		</div>
 	</c:forEach>
-	
-<%@ include file="/WEB-INF/views/include/include_page_nav.jspf" %>
-	
-	
-	
 </div>
+<%@ include file="/WEB-INF/views/include/include_page_nav.jspf" %>
